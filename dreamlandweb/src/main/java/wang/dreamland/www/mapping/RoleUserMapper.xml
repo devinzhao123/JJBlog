@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.dreamland.www.dao.RoleUserMapper">
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.RoleUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="r_id" jdbcType="BIGINT" property="rId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, r_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user (id, u_id, r_id)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{rId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="rId != null">
+        r_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        #{rId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        r_id = #{rId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    set u_id = #{uId,jdbcType=BIGINT},
+      r_id = #{rId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.RoleUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="r_id" jdbcType="BIGINT" property="rId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, r_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user (id, u_id, r_id)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{rId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="rId != null">
+        r_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        #{rId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        r_id = #{rId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    set u_id = #{uId,jdbcType=BIGINT},
+      r_id = #{rId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.RoleUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="r_id" jdbcType="BIGINT" property="rId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, r_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user (id, u_id, r_id)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{rId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    insert into role_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="rId != null">
+        r_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        #{rId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="rId != null">
+        r_id = #{rId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.RoleUser">
+    update role_user
+    set u_id = #{uId,jdbcType=BIGINT},
+      r_id = #{rId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

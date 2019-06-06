@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.dreamland.www.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Comment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="con_id" jdbcType="BIGINT" property="conId" />
+    <result column="com_id" jdbcType="BIGINT" property="comId" />
+    <result column="by_id" jdbcType="BIGINT" property="byId" />
+    <result column="comm_time" jdbcType="TIMESTAMP" property="commTime" />
+    <result column="children" jdbcType="VARCHAR" property="children" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.Comment">
+    <result column="com_content" jdbcType="LONGVARCHAR" property="comContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, con_id, com_id, by_id, comm_time, children, upvote
+  </sql>
+  <sql id="Blob_Column_List">
+    com_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment (id, con_id, com_id, 
+      by_id, comm_time, children, 
+      upvote, com_content)
+    values (#{id,jdbcType=BIGINT}, #{conId,jdbcType=BIGINT}, #{comId,jdbcType=BIGINT}, 
+      #{byId,jdbcType=BIGINT}, #{commTime,jdbcType=TIMESTAMP}, #{children,jdbcType=VARCHAR}, 
+      #{upvote,jdbcType=INTEGER}, #{comContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conId != null">
+        con_id,
+      </if>
+      <if test="comId != null">
+        com_id,
+      </if>
+      <if test="byId != null">
+        by_id,
+      </if>
+      <if test="commTime != null">
+        comm_time,
+      </if>
+      <if test="children != null">
+        children,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="comContent != null">
+        com_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    <set>
+      <if test="conId != null">
+        con_id = #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        com_id = #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        by_id = #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        comm_time = #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        children = #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        com_content = #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      com_content = #{comContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Comment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="con_id" jdbcType="BIGINT" property="conId" />
+    <result column="com_id" jdbcType="BIGINT" property="comId" />
+    <result column="by_id" jdbcType="BIGINT" property="byId" />
+    <result column="comm_time" jdbcType="TIMESTAMP" property="commTime" />
+    <result column="children" jdbcType="VARCHAR" property="children" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.Comment">
+    <result column="com_content" jdbcType="LONGVARCHAR" property="comContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, con_id, com_id, by_id, comm_time, children, upvote
+  </sql>
+  <sql id="Blob_Column_List">
+    com_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment (id, con_id, com_id, 
+      by_id, comm_time, children, 
+      upvote, com_content)
+    values (#{id,jdbcType=BIGINT}, #{conId,jdbcType=BIGINT}, #{comId,jdbcType=BIGINT}, 
+      #{byId,jdbcType=BIGINT}, #{commTime,jdbcType=TIMESTAMP}, #{children,jdbcType=VARCHAR}, 
+      #{upvote,jdbcType=INTEGER}, #{comContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conId != null">
+        con_id,
+      </if>
+      <if test="comId != null">
+        com_id,
+      </if>
+      <if test="byId != null">
+        by_id,
+      </if>
+      <if test="commTime != null">
+        comm_time,
+      </if>
+      <if test="children != null">
+        children,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="comContent != null">
+        com_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    <set>
+      <if test="conId != null">
+        con_id = #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        com_id = #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        by_id = #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        comm_time = #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        children = #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        com_content = #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      com_content = #{comContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Comment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="con_id" jdbcType="BIGINT" property="conId" />
+    <result column="com_id" jdbcType="BIGINT" property="comId" />
+    <result column="by_id" jdbcType="BIGINT" property="byId" />
+    <result column="comm_time" jdbcType="TIMESTAMP" property="commTime" />
+    <result column="children" jdbcType="VARCHAR" property="children" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.Comment">
+    <result column="com_content" jdbcType="LONGVARCHAR" property="comContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, con_id, com_id, by_id, comm_time, children, upvote
+  </sql>
+  <sql id="Blob_Column_List">
+    com_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment (id, con_id, com_id, 
+      by_id, comm_time, children, 
+      upvote, com_content)
+    values (#{id,jdbcType=BIGINT}, #{conId,jdbcType=BIGINT}, #{comId,jdbcType=BIGINT}, 
+      #{byId,jdbcType=BIGINT}, #{commTime,jdbcType=TIMESTAMP}, #{children,jdbcType=VARCHAR}, 
+      #{upvote,jdbcType=INTEGER}, #{comContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="conId != null">
+        con_id,
+      </if>
+      <if test="comId != null">
+        com_id,
+      </if>
+      <if test="byId != null">
+        by_id,
+      </if>
+      <if test="commTime != null">
+        comm_time,
+      </if>
+      <if test="children != null">
+        children,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="comContent != null">
+        com_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    <set>
+      <if test="conId != null">
+        con_id = #{conId,jdbcType=BIGINT},
+      </if>
+      <if test="comId != null">
+        com_id = #{comId,jdbcType=BIGINT},
+      </if>
+      <if test="byId != null">
+        by_id = #{byId,jdbcType=BIGINT},
+      </if>
+      <if test="commTime != null">
+        comm_time = #{commTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="children != null">
+        children = #{children,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="comContent != null">
+        com_content = #{comContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      com_content = #{comContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Comment">
+    update comment
+    set con_id = #{conId,jdbcType=BIGINT},
+      com_id = #{comId,jdbcType=BIGINT},
+      by_id = #{byId,jdbcType=BIGINT},
+      comm_time = #{commTime,jdbcType=TIMESTAMP},
+      children = #{children,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

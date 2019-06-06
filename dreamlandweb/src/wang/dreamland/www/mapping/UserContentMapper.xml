@@ -1,0 +1,974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.dreamland.www.dao.UserContentMapper">
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.UserContent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="personal" jdbcType="VARCHAR" property="personal" />
+    <result column="rpt_time" jdbcType="TIMESTAMP" property="rptTime" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+    <result column="downvote" jdbcType="INTEGER" property="downvote" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.UserContent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, title, category, personal, rpt_time, img_url, nick_name, upvote, downvote, 
+    comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content (id, u_id, title, 
+      category, personal, rpt_time, 
+      img_url, nick_name, upvote, 
+      downvote, comment_num, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{personal,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{upvote,jdbcType=INTEGER}, 
+      #{downvote,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="personal != null">
+        personal,
+      </if>
+      <if test="rptTime != null">
+        rpt_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        personal = #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.UserContent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="personal" jdbcType="VARCHAR" property="personal" />
+    <result column="rpt_time" jdbcType="TIMESTAMP" property="rptTime" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+    <result column="downvote" jdbcType="INTEGER" property="downvote" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.UserContent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, title, category, personal, rpt_time, img_url, nick_name, upvote, downvote, 
+    comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content (id, u_id, title, 
+      category, personal, rpt_time, 
+      img_url, nick_name, upvote, 
+      downvote, comment_num, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{personal,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{upvote,jdbcType=INTEGER}, 
+      #{downvote,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="personal != null">
+        personal,
+      </if>
+      <if test="rptTime != null">
+        rpt_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        personal = #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.UserContent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="personal" jdbcType="VARCHAR" property="personal" />
+    <result column="rpt_time" jdbcType="TIMESTAMP" property="rptTime" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+    <result column="downvote" jdbcType="INTEGER" property="downvote" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.UserContent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, title, category, personal, rpt_time, img_url, nick_name, upvote, downvote, 
+    comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content (id, u_id, title, 
+      category, personal, rpt_time, 
+      img_url, nick_name, upvote, 
+      downvote, comment_num, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{personal,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{upvote,jdbcType=INTEGER}, 
+      #{downvote,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="personal != null">
+        personal,
+      </if>
+      <if test="rptTime != null">
+        rpt_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        personal = #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.UserContent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="personal" jdbcType="VARCHAR" property="personal" />
+    <result column="rpt_time" jdbcType="TIMESTAMP" property="rptTime" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+    <result column="downvote" jdbcType="INTEGER" property="downvote" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.UserContent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, title, category, personal, rpt_time, img_url, nick_name, upvote, downvote, 
+    comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content (id, u_id, title, 
+      category, personal, rpt_time, 
+      img_url, nick_name, upvote, 
+      downvote, comment_num, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{personal,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{upvote,jdbcType=INTEGER}, 
+      #{downvote,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="personal != null">
+        personal,
+      </if>
+      <if test="rptTime != null">
+        rpt_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        personal = #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.UserContent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="personal" jdbcType="VARCHAR" property="personal" />
+    <result column="rpt_time" jdbcType="TIMESTAMP" property="rptTime" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="upvote" jdbcType="INTEGER" property="upvote" />
+    <result column="downvote" jdbcType="INTEGER" property="downvote" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="wang.dreamland.www.entity.UserContent">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, title, category, personal, rpt_time, img_url, nick_name, upvote, downvote, 
+    comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content (id, u_id, title, 
+      category, personal, rpt_time, 
+      img_url, nick_name, upvote, 
+      downvote, comment_num, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{personal,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{upvote,jdbcType=INTEGER}, 
+      #{downvote,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.UserContent">
+    insert into user_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="personal != null">
+        personal,
+      </if>
+      <if test="rptTime != null">
+        rpt_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="personal != null">
+        personal = #{personal,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null">
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.UserContent">
+    update user_content
+    set u_id = #{uId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      personal = #{personal,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=INTEGER},
+      downvote = #{downvote,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

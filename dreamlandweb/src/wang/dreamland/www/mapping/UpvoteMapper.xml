@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wang.dreamland.www.dao.UpvoteMapper">
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Upvote">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="upvote" jdbcType="VARCHAR" property="upvote" />
+    <result column="downvote" jdbcType="VARCHAR" property="downvote" />
+    <result column="upvote_time" jdbcType="TIMESTAMP" property="upvoteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, content_id, ip, upvote, downvote, upvote_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote (id, u_id, content_id, 
+      ip, upvote, downvote, 
+      upvote_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{ip,jdbcType=VARCHAR}, #{upvote,jdbcType=VARCHAR}, #{downvote,jdbcType=VARCHAR}, 
+      #{upvoteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time = #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    set u_id = #{uId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=VARCHAR},
+      downvote = #{downvote,jdbcType=VARCHAR},
+      upvote_time = #{upvoteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Upvote">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="upvote" jdbcType="VARCHAR" property="upvote" />
+    <result column="downvote" jdbcType="VARCHAR" property="downvote" />
+    <result column="upvote_time" jdbcType="TIMESTAMP" property="upvoteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, content_id, ip, upvote, downvote, upvote_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote (id, u_id, content_id, 
+      ip, upvote, downvote, 
+      upvote_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{ip,jdbcType=VARCHAR}, #{upvote,jdbcType=VARCHAR}, #{downvote,jdbcType=VARCHAR}, 
+      #{upvoteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time = #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    set u_id = #{uId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=VARCHAR},
+      downvote = #{downvote,jdbcType=VARCHAR},
+      upvote_time = #{upvoteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Upvote">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="upvote" jdbcType="VARCHAR" property="upvote" />
+    <result column="downvote" jdbcType="VARCHAR" property="downvote" />
+    <result column="upvote_time" jdbcType="TIMESTAMP" property="upvoteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, content_id, ip, upvote, downvote, upvote_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote (id, u_id, content_id, 
+      ip, upvote, downvote, 
+      upvote_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{ip,jdbcType=VARCHAR}, #{upvote,jdbcType=VARCHAR}, #{downvote,jdbcType=VARCHAR}, 
+      #{upvoteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time = #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    set u_id = #{uId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=VARCHAR},
+      downvote = #{downvote,jdbcType=VARCHAR},
+      upvote_time = #{upvoteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Upvote">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="upvote" jdbcType="VARCHAR" property="upvote" />
+    <result column="downvote" jdbcType="VARCHAR" property="downvote" />
+    <result column="upvote_time" jdbcType="TIMESTAMP" property="upvoteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, content_id, ip, upvote, downvote, upvote_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote (id, u_id, content_id, 
+      ip, upvote, downvote, 
+      upvote_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{ip,jdbcType=VARCHAR}, #{upvote,jdbcType=VARCHAR}, #{downvote,jdbcType=VARCHAR}, 
+      #{upvoteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time = #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    set u_id = #{uId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=VARCHAR},
+      downvote = #{downvote,jdbcType=VARCHAR},
+      upvote_time = #{upvoteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="wang.dreamland.www.entity.Upvote">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="u_id" jdbcType="BIGINT" property="uId" />
+    <result column="content_id" jdbcType="BIGINT" property="contentId" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="upvote" jdbcType="VARCHAR" property="upvote" />
+    <result column="downvote" jdbcType="VARCHAR" property="downvote" />
+    <result column="upvote_time" jdbcType="TIMESTAMP" property="upvoteTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, u_id, content_id, ip, upvote, downvote, upvote_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from upvote
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote (id, u_id, content_id, 
+      ip, upvote, downvote, 
+      upvote_time)
+    values (#{id,jdbcType=BIGINT}, #{uId,jdbcType=BIGINT}, #{contentId,jdbcType=BIGINT}, 
+      #{ip,jdbcType=VARCHAR}, #{upvote,jdbcType=VARCHAR}, #{downvote,jdbcType=VARCHAR}, 
+      #{upvoteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="wang.dreamland.www.entity.Upvote">
+    insert into upvote
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="contentId != null">
+        content_id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=BIGINT},
+      </if>
+      <if test="contentId != null">
+        content_id = #{contentId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        upvote = #{upvote,jdbcType=VARCHAR},
+      </if>
+      <if test="downvote != null">
+        downvote = #{downvote,jdbcType=VARCHAR},
+      </if>
+      <if test="upvoteTime != null">
+        upvote_time = #{upvoteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="wang.dreamland.www.entity.Upvote">
+    update upvote
+    set u_id = #{uId,jdbcType=BIGINT},
+      content_id = #{contentId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      upvote = #{upvote,jdbcType=VARCHAR},
+      downvote = #{downvote,jdbcType=VARCHAR},
+      upvote_time = #{upvoteTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
